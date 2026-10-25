@@ -1,0 +1,12 @@
+{
+  "name": "spec-to-test-workflow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Spec-to-verified-feature workflow with a freeze guard for Playwright test projects",
+  "license": "MIT",
+  "scripts": {
+    "ai:freeze": "node scripts/ai/freeze-guard.mjs freeze",
+    "ai:lock-tests": "node scripts/ai/freeze-guard.mjs lock-tests",
+    "ai:verify": "node scripts/ai/freeze-guard.mjs verify"
+  }
+}
