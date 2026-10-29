@@ -5,6 +5,7 @@
   "description": "Spec-to-verified-feature workflow with a freeze guard for Playwright test projects",
   "license": "MIT",
   "scripts": {
+    "test": "node --test",
     "ai:freeze": "node scripts/ai/freeze-guard.mjs freeze",
     "ai:lock-tests": "node scripts/ai/freeze-guard.mjs lock-tests",
     "ai:verify": "node scripts/ai/freeze-guard.mjs verify"

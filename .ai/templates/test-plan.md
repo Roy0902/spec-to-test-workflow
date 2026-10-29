@@ -1,6 +1,6 @@
 # Test Plan: [Feature Name]
 
-> **Frozen artifact.** Derived only from the specification and the approved intent diagram. Implementation code, running-app observations, network captures and task lists may not change anything below. This file is never modified, versioned or extended after freeze. Gaps found later go to a follow-up plan (see `.ai/skills/06-verification-loop.md`, Post-Freeze Gaps).
+> **Frozen artifact.** Derived only from the specification and approved intent diagram. Code, observations, captures, task lists, and engineering design are not expectation sources. Never modify this file after freeze, including evidence/status fields. Gaps go to a separate follow-up under the [verification policy](../../.github/skills/verification-loop/SKILL.md#post-freeze-gaps).
 
 ## 1. Provenance
 
@@ -15,7 +15,9 @@
 | Requirement source           | `.ai` Skill 00 output @ `[date]`                              |
 | Frozen by                    | `[name]`                                                      |
 | Frozen at                    | `[YYYY-MM-DD]`                                                |
-| Post-freeze gaps             | `[follow-up plan path(s), or none]`. This file is not edited. |
+| Implementation design       | `[path/version]` (engineering context only)                    |
+| Execution evidence          | `[separate record path]` (record runs/status there, not here)  |
+| Gap register                | `[separate record path]` (future follow-up references live there) |
 
 ## 2. Scope
 
@@ -80,13 +82,18 @@ _Every expected value below is concrete and observable. "Works correctly" is not
 | :------------------ | :-------------------- | :----------- | :------- | :---------------------------- |
 | `AMB-[feature]-001` | `[assumption]`        | High/Med/Low | Yes/No   | `[Pending / Approved by ...]` |
 
-## 9. Red-Run Evidence
+## 9. Execution Evidence Location
 
-_Every test must fail before implementation for the feature-missing reason. One row per test; fill during Phase 8. Expectations in this file are not edited here._
+_Choose the external record location before freeze, using the
+[execution-evidence template](./execution-evidence.md). During Phase 8 record
+each acceptance test's actual feature-missing red failure there. Append subsequent
+verification and status there too. No Phase 8 or later writes to this plan._
 
-| Scenario / Test     | Red failure before implementation | Reason category | Date     |
-| :------------------ | :-------------------------------- | :-------------- | :------- |
-| `SCN-[feature]-001` | `[error, e.g. element not found]` | Feature missing | `[date]` |
+- Evidence record: `[target project feature-artifact path]`
+- Required run identity: `[test/SCN, command, working directory, artifact hashes/commit, timestamp, log]`
+- Evidence is reviewed, not mechanically validated or checksum-protected by the guard.
+- Existing frozen plans are not migrated or rewritten. Preserve historical embedded
+  evidence and reference it from external records for subsequent runs.
 
 ## 10. Freeze Sign-off
 
@@ -96,4 +103,6 @@ _Every test must fail before implementation for the feature-missing reason. One 
 - [ ] No blocking ambiguity remains unresolved.
 - [ ] Coverage targets met or justified.
 - [ ] Intent diagram version recorded and approved.
+- [ ] Implementation design and native quality strategy reviewed as engineering context.
+- [ ] Separate evidence and gap-record locations selected; no later plan edits required.
 - [ ] Freeze stamp recorded (`Frozen by` / `Frozen at` above). No edits after this point.

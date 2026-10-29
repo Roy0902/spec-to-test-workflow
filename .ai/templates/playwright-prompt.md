@@ -8,9 +8,10 @@ You are authoring automated tests from a **frozen test plan**, before any implem
 2. Shared checklist (UI and API contract matrices): `.ai` Skill 03 output
 3. Requirement/ambiguity registers: `.ai` Skill 00 output
 4. Skill rules:
-   - `.ai/skills/05-playwright-authoring.md` (UI / E2E)
-   - `.ai/skills/08-api-level-tests.md` (API-level)
-   - `.ai/skills/07-dynamic-api-response.md` (when a step crosses the network)
+   - [Playwright authoring](../../.github/skills/playwright-authoring/SKILL.md) (UI / E2E)
+   - [API-level tests](../../.github/skills/api-level-tests/SKILL.md)
+   - [Dynamic API response](../../.github/skills/dynamic-api-response/SKILL.md) (network steps)
+5. External [execution record](./execution-evidence.md), selected before freeze.
 
 ## Pre-flight
 
@@ -26,8 +27,8 @@ You are authoring automated tests from a **frozen test plan**, before any implem
 4. **Handle network steps** with Skill 07. For a new endpoint, build the fixture from the checklist's API contract and mark it as a contract fixture.
 5. **Run:** `npx playwright test tests/specs/<feature>.spec.ts --project=chromiumheadless`.
 6. **Confirm the red reason.** Every test must fail because the feature is missing. A failure from a locator typo, auth, or setup is a test defect: fix it and run again.
-7. **Record red-run evidence** in the plan's Red-Run Evidence table (no expectation edits).
-8. **Hand off.** The tests are read-only from here. Implementation (Phase 9) turns them green.
+7. **Record red-run evidence** in the separate execution record: test/SCN, exact command, working directory, artifact identity, failure, and feature-missing reason. Never edit the frozen plan.
+8. **Lock and hand off.** Run `npm run ai:lock-tests -- <feature>`. Protected acceptance files/baselines are now read-only. Implementation (Phase 9) turns them green.
 
 ## Hard Stops
 
@@ -41,5 +42,5 @@ You are authoring automated tests from a **frozen test plan**, before any implem
 
 - `tests/specs/<feature>.spec.ts` for E2E scenarios.
 - `tests/api/<feature>.spec.ts` for API-level scenarios.
-- Red-Run Evidence in the test plan (no expectation edits).
+- Red-run evidence outside the frozen test plan; preserve chronological entries.
 - A short report mapping `SCN` -> test file -> red reason.
